@@ -14,12 +14,9 @@ public class SettingsMenu : MonoBehaviour
 
     private void Start()
     {
-        closeButton = GetComponent<Button>();
-        exitButton = GetComponent<Button>();
-
         gameObject.GetComponent<Button>().onClick.AddListener(Open);
-        closeButton.onClick.AddListener(Close);
-        exitButton.onClick.AddListener(() => Application.Quit());
+        closeButton.GetComponent<Button>().onClick.AddListener(Close);
+        exitButton.GetComponent<Button>().onClick.AddListener(() => Application.Quit());
     }
 
     private void Open()
