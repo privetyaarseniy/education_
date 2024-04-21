@@ -5,6 +5,6 @@ using UnityEngine;
 
 public class StartWindow : WindowBase
 {
-    public override WindowType Type => WindowType.StartWindow;
+    public override int number => 0;
     public override bool IsPopup => false;
 }

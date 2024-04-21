@@ -9,8 +9,8 @@ namespace HW4
     {
         private void Awake()
         {
-            SceneManager.LoadScene((int)HW4.Scenes.Game, LoadSceneMode.Additive);
             SceneManager.LoadScene((int)HW4.Scenes.UI, LoadSceneMode.Additive);
+            SceneManager.LoadScene((int)HW4.Scenes.Game, LoadSceneMode.Additive);
             SceneManager.UnloadSceneAsync((int)HW4.Scenes.Startup);
         }
     }
