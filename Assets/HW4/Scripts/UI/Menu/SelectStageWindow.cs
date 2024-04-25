@@ -4,6 +4,6 @@ using UnityEngine;
 
 public class SelectStageWindow : WindowBase
 {
-    public override int number => 0;
+    public override int number => 2;
     public override bool IsPopup => false;
 }

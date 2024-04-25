@@ -10,8 +10,9 @@ namespace HW4
         [SerializeField]
         private GameObject _ball;
 
-        public static event Action OnGameLaunch;
+        public static event Action OnGameStart;
         public static event Action OnGameRestart;
+        public static event Action OnGameReset;
 
         private bool isGameActive { get; set; }
 
@@ -24,7 +25,7 @@ namespace HW4
         {
             if(!isGameActive && Input.GetKeyDown(KeyCode.Space))
             {
-                OnGameLaunch();
+                OnGameStart();
                 isGameActive = true;
             }
             if(isGameActive && _ball.transform.position.y < -16)

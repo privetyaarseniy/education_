@@ -25,13 +25,13 @@ namespace HW4
 
         private void Start()
         {
-            StartManager.OnGameLaunch += OnGameLaunch;
+            StartManager.OnGameStart += OnGameLaunch;
             StartManager.OnGameRestart += OnGameRestart;
         }
 
         private void OnDestroy()
         {
-            StartManager.OnGameLaunch -= OnGameLaunch;
+            StartManager.OnGameStart -= OnGameLaunch;
             StartManager.OnGameRestart -= OnGameRestart;
         }
 

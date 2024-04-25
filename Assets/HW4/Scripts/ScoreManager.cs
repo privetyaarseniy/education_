@@ -19,6 +19,8 @@ namespace HW4
 
         private void Start()
         {
+            StartManager.OnGameRestart += OnGameRestart;
+
             Block.OnBlockDestroy += EditScore;
         }
 
@@ -27,10 +29,15 @@ namespace HW4
             Block.OnBlockDestroy -= EditScore;
         }
 
-        private void EditScore(int score)
+        private void EditScore(int scoreToAdd)
         {
-            scoreCount += score;
+            scoreCount += scoreToAdd;
             scoreText.text = $"Score: {scoreCount}";
+        }
+
+        private void OnGameRestart()
+        {
+            EditScore(-scoreCount);
         }
     }
 }

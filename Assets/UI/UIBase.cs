@@ -13,7 +13,6 @@ public abstract class UIBase : MonoBehaviour
     protected void Awake()
     {
         Instance = this;
-        DontDestroyOnLoad(gameObject);
         Windows = GetComponentsInChildren<WindowBase>();
     }
 

@@ -8,6 +8,9 @@ namespace HW4
     {
         Startup = 0,
         Game = 1,
-        UI = 2,
+        GameUI = 2,
+        UI = 3,
+        Level1 = 4,
+        Level2 = 5,
     }
 }

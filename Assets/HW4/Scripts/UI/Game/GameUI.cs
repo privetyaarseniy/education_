@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace HW4
 {
-    public class UIStartManager : UIBase
+    public class GameUI : UIBase
     {
         [SerializeField]
         private int _startWindow;
@@ -14,24 +14,29 @@ namespace HW4
         [SerializeField]
         private int _restartWindow;
 
-        private void Awake()
+        private new void Awake()
         {
             base.Awake();
+        }
+
+        private void OnEnable()
+        {
             OpenWindow(_startWindow);
         }
+
         private void Start()
         {
-            StartManager.OnGameLaunch += OnGameLaunch;
+            StartManager.OnGameStart += OnGameStart;
             StartManager.OnGameRestart += OnGameRestart;
         }
 
         private void OnDestroy()
         {
-            StartManager.OnGameLaunch -= OnGameLaunch;
+            StartManager.OnGameStart -= OnGameStart;
             StartManager.OnGameRestart -= OnGameRestart;
         }
 
-        private void OnGameLaunch()
+        private void OnGameStart()
         {
             OpenWindow(_gameWindow);
         }

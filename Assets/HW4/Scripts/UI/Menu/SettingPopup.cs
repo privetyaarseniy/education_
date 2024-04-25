@@ -4,6 +4,6 @@ using UnityEngine;
 
 public class SettingPopup : WindowBase
 {
-    public override int number => 0;
+    public override int number => 1;
     public override bool IsPopup => true;
 }
