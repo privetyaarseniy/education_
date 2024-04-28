@@ -6,7 +6,7 @@ using UnityEngine;
 public abstract class WindowBase : MonoBehaviour
 {
 
-    public abstract int number { get; }
+    public abstract string Name { get; }
     public abstract bool IsPopup { get; }
 
 }

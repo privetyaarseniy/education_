@@ -6,7 +6,7 @@ namespace HW4
 {
     public class StartWindow : WindowBase
     {
-        public override int number => 0;
+        public override string Name => "StartWindow";
         public override bool IsPopup => false;
     }
 }

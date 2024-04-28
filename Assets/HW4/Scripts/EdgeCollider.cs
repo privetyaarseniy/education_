@@ -7,6 +7,7 @@ namespace HW4
     public class EdgeCollider : MonoBehaviour
     {
         private EdgeCollider2D _collider;
+        private Camera _camera;
 
         private void Awake()
         {
@@ -15,18 +16,20 @@ namespace HW4
 
         private void Start()
         {
+            _camera = Camera.main;
             EdgeColliderInit();
+            
         }
 
         private void EdgeColliderInit()
         {
             var edges = new List<Vector2>
             {
-                Camera.main.ScreenToWorldPoint(Vector2.zero),
-                Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, 0)),
-                Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height)),
-                Camera.main.ScreenToWorldPoint(new Vector2(0, Screen.height)),
-                Camera.main.ScreenToWorldPoint(Vector2.zero)
+                _camera.ScreenToWorldPoint(Vector2.zero),
+                _camera.ScreenToWorldPoint(new Vector2(Screen.width, 0)),
+                _camera.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height)),
+                _camera.ScreenToWorldPoint(new Vector2(0, Screen.height)),
+                _camera.ScreenToWorldPoint(Vector2.zero)
             };
 
             _collider.SetPoints(edges);

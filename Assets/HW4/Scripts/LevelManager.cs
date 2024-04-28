@@ -12,17 +12,24 @@ public class LevelManager : MonoBehaviour
     [SerializeField]
     private KeyCode _quitKey;
     [SerializeField]
-    private MenuUI _menuUI;
+    private UISystem _menuUI;
     [SerializeField]
-    private GameUI _gameUI;
+    private UISystem _gameUI;
     [SerializeField]
-    private int _backToMenuWindow;
+    private string _backToMenuWindow;
 
     private bool IsInGame { get; set; }
     private int CurrentLevel { get; set; }
+    private void Awake()
+    {
+        DontDestroyOnLoad(this);
+    }
 
     private void Start()
     {
+        _gameUI = GameObject.Find("GameUI").GetComponent<UISystem>();
+        _menuUI = GameObject.Find("MenuUI").GetComponent<UISystem>();
+
         LevelButton.OnLevelButtonClick += StartLevel;
         StartManager.OnGameRestart += OnGameRestart;
 

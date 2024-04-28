@@ -25,13 +25,13 @@ namespace HW4
 
         private void Start()
         {
-            StartManager.OnGameStart += OnGameLaunch;
+            StartManager.OnGameStart += OnGameStart;
             StartManager.OnGameRestart += OnGameRestart;
         }
 
         private void OnDestroy()
         {
-            StartManager.OnGameStart -= OnGameLaunch;
+            StartManager.OnGameStart -= OnGameStart;
             StartManager.OnGameRestart -= OnGameRestart;
         }
 
@@ -40,7 +40,7 @@ namespace HW4
             _rb.velocity = Vector2.ClampMagnitude(_rb.velocity, _speedLimit);
         }
 
-        private void OnGameLaunch()
+        private void OnGameStart()
         {
             transform.position = _startingPosition;
             _rb.AddForce(new Vector2(Random.Range(-_xRangeStartForce, _xRangeStartForce + 1), _yStartForce), ForceMode2D.Impulse);

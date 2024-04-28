@@ -6,7 +6,7 @@ namespace HW4
 {
     public class RestartWindow : WindowBase
     {
-        public override int number => 2;
+        public override string Name => "RestartWindow";
         public override bool IsPopup => false;
     }
 }

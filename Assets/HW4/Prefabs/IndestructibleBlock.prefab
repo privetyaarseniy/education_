@@ -99,8 +99,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _indestructible: 1
   _scoreGiven: 1
-  _hitsToDestroy: 1
-  _ball: {fileID: 0}
-  _1HitLeft: {r: 1, g: 1, b: 1, a: 0}
-  _2HitLeft: {r: 0.6792453, g: 0.6792453, b: 0.6792453, a: 0}
-  _3HitLeft: {r: 0.3773585, g: 0.3773585, b: 0.3773585, a: 0}
+  _hitColors:
+  - {r: 1, g: 1, b: 1, a: 1}

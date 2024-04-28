@@ -7,12 +7,18 @@ namespace HW4
 {
     public class StartManager : MonoBehaviour
     {
-        [SerializeField]
-        private GameObject _ball;
-
         public static event Action OnGameStart;
         public static event Action OnGameRestart;
         public static event Action OnGameReset;
+
+        [SerializeField]
+        private GameObject _ball;        
+        [SerializeField]
+        private string _gameWindow;
+        [SerializeField]
+        private string _restartWindow;
+
+        private UISystem UI;
 
         private bool isGameActive { get; set; }
 
@@ -21,16 +27,23 @@ namespace HW4
             isGameActive = false;    
         }
 
+        private void Start()
+        {
+            UI = GameObject.Find("GameUI").GetComponent<UISystem>();
+        }
+
         private void Update()
         {
             if(!isGameActive && Input.GetKeyDown(KeyCode.Space))
             {
                 OnGameStart();
+                UI.Instance.OpenWindow(_gameWindow);
                 isGameActive = true;
             }
             if(isGameActive && _ball.transform.position.y < -16)
             {
                 OnGameRestart();
+                UI.Instance.OpenWindow(_restartWindow);
                 isGameActive = false;
             }
         }
