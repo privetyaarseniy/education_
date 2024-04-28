@@ -3,22 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public abstract class UIBase : MonoBehaviour
+public class UISystem : MonoBehaviour
 {
-    protected WindowBase[] Windows { get; set; }
-    public UIBase Instance { get; private set; }
-    
+    [SerializeField]
+    private string _startWindow;
 
+    private WindowBase[] Windows { get; set; }
+    public UISystem Instance { get; private set; }
 
-    protected void Awake()
+    private void Awake()
     {
         Instance = this;
         Windows = GetComponentsInChildren<WindowBase>();
+        OpenWindow(_startWindow);
     }
 
-    public void OpenWindow(int windowNumber)
+    public void OpenWindow(string windowName)
     {
-        var windowToOpen = Windows.First(x => x.number == windowNumber);
+        var windowToOpen = Windows.First(x => x.Name == windowName);
 
         if (windowToOpen == null)
         {

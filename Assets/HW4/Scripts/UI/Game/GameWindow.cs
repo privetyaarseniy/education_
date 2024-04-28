@@ -6,7 +6,7 @@ namespace HW4
 {
     public class GameWindow : WindowBase
     {
-        public override int number => 1;
+        public override string Name => "GameWindow";
         public override bool IsPopup => false;
     }
 }

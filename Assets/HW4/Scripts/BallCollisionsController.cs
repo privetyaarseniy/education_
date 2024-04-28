@@ -7,9 +7,7 @@ namespace HW4
     public class BallCollisionsController : MonoBehaviour
     {
         [SerializeField]
-        private GameObject _leftCollider;
-        [SerializeField]
-        private GameObject _rightCollider;
+        private GameObject _board;
         [SerializeField]
         private int _xForce;
 
@@ -22,13 +20,16 @@ namespace HW4
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            if (collision.gameObject == _leftCollider)
+            if (collision.gameObject == _board)
             {
-                _rb.AddForce(new Vector2(-_xForce, 0), ForceMode2D.Impulse);
-            }
-            else if (collision.gameObject == _rightCollider)
-            {
-                _rb.AddForce(new Vector2(_xForce, 0), ForceMode2D.Impulse);
+                if(_board.transform.position.x > gameObject.transform.position.x)
+                {
+                    _rb.AddForce(new Vector2(-_xForce, 0), ForceMode2D.Impulse);
+                }
+                else
+                {
+                    _rb.AddForce(new Vector2(_xForce, 0), ForceMode2D.Impulse);
+                }
             }
         }
     }

@@ -1790,7 +1790,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34804d21d7e0daf4da030e51398c3552, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _window: 1
+  _windowName: SettingPopup
   UI: {fileID: 1361807238}
 --- !u!1 &391027584
 GameObject:
@@ -3314,7 +3314,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34804d21d7e0daf4da030e51398c3552, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _window: 0
+  _windowName: StartWindow
   UI: {fileID: 1361807238}
 --- !u!1 &653015775
 GameObject:
@@ -4778,7 +4778,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34804d21d7e0daf4da030e51398c3552, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _window: 2
+  _windowName: SelectStageWindow
   UI: {fileID: 1361807238}
 --- !u!1 &990872265
 GameObject:
@@ -5812,6 +5812,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e73fedd0b3a5e1246a8f1c5780149d04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _startingLives: 0
 --- !u!114 &1182392404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6344,7 +6345,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34804d21d7e0daf4da030e51398c3552, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _window: 0
+  _windowName: StartWindow
   UI: {fileID: 1361807238}
 --- !u!1 &1247811573
 GameObject:
@@ -7434,9 +7435,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1361807233}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5426b0e7186951343b64454e6f9a83c4, type: 3}
+  m_Script: {fileID: 11500000, guid: d5bde6315dbf3f64c82fe3ed245a2020, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _startWindow: StartWindow
 --- !u!1 &1421580134
 GameObject:
   m_ObjectHideFlags: 0
@@ -9536,12 +9538,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1803595842}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a14d7247ac24b54fa49c1933b56ccdb, type: 3}
+  m_Script: {fileID: 11500000, guid: d5bde6315dbf3f64c82fe3ed245a2020, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startWindow: 0
-  _gameWindow: 1
-  _restartWindow: 2
+  _startWindow: StartWindow
 --- !u!1 &1805556785
 GameObject:
   m_ObjectHideFlags: 0
@@ -10643,54 +10643,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2013892294}
   m_CullTransparentMesh: 1
---- !u!1 &2034689614
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2034689616}
-  - component: {fileID: 2034689615}
-  m_Layer: 0
-  m_Name: UIManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2034689615
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2034689614}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b49a17e3536f96f4ca7e3484ec0c6343, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _quitKey: 27
-  _menuUI: {fileID: 1361807238}
-  _gameUI: {fileID: 1803595847}
-  _backToMenuWindow: 2
---- !u!4 &2034689616
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2034689614}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 960, y: 540, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2093056584
 GameObject:
   m_ObjectHideFlags: 0

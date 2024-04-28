@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace HW4
@@ -12,14 +10,8 @@ namespace HW4
         [SerializeField]
         private int _scoreGiven;
         [SerializeField]
-        [Range(1f, 3f)]
+        private Color[] _hitColors;
         private int _hitsToDestroy;
-        [SerializeField]
-        private Color _1HitLeft;
-        [SerializeField]
-        private Color _2HitLeft;
-        [SerializeField]
-        private Color _3HitLeft;
 
         private SpriteRenderer _spriteRenderer;
         private GameObject _ball;
@@ -29,22 +21,18 @@ namespace HW4
         private void Awake()
         {
             _spriteRenderer = GetComponent<SpriteRenderer>();
-            _ball = GameObject.FindGameObjectWithTag("Ball");
 
             if (_indestructible)
             {
                 enabled = false;
             }
+            _hitsToDestroy = _hitColors.Length;
             ChangeColor();
         }
 
-        private void Update()
+        private void Start()
         {
-            if (_hitsToDestroy <= 0)
-            {
-                OnBlockDestroy(_scoreGiven);
-                Destroy(gameObject);
-            }
+            _ball = GameObject.Find("Ball");
         }
 
         private void OnCollisionEnter2D(Collision2D collision)
@@ -52,18 +40,21 @@ namespace HW4
             if (collision.gameObject == _ball)
             {
                 _hitsToDestroy--;
-                ChangeColor();
+                if (_hitsToDestroy <= 0)
+                {
+                    OnBlockDestroy?.Invoke(_scoreGiven);
+                    gameObject.SetActive(false);
+                }
+                else
+                {
+                    ChangeColor();
+                }
             }
         }
 
         private void ChangeColor()
         {
-            switch(_hitsToDestroy)
-            {
-                case 1: _spriteRenderer.color = _1HitLeft; break;
-                case 2: _spriteRenderer.color = _2HitLeft; break;
-                case 3: _spriteRenderer.color = _3HitLeft; break;
-            }
+            _spriteRenderer.color = _hitColors[_hitsToDestroy - 1];
         }
     }
 }
