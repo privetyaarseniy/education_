@@ -7,9 +7,9 @@ using UnityEngine.UI;
 public class OpenWindow : MonoBehaviour
 {
     [SerializeField]
-    private WindowType _window;
+    private int _window;
     [SerializeField]
-    private UISystem UI;
+    private UIBase UI;
 
     private void Start()
     {
