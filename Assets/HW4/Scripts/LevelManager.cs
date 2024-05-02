@@ -1,6 +1,9 @@
-using HW4;
+using Arkanoid;
+using Palmmedia.ReportGenerator.Core.Reporting.Builders.Rendering;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -10,16 +13,15 @@ using UnityEngine.UI;
 public class LevelManager : MonoBehaviour
 {
     [SerializeField]
-    private KeyCode _quitKey;
+    private string _gameSceneName;
     [SerializeField]
-    private UISystem _menuUI;
-    [SerializeField]
-    private UISystem _gameUI;
-    [SerializeField]
-    private string _backToMenuWindow;
+    private string _backToMenuWindowName;
 
-    private bool IsInGame { get; set; }
-    private int CurrentLevel { get; set; }
+    private UISystem _gameUI;
+    private UISystem _menuUI;
+    private UISwitcher _switcher;
+    private string _currentLevel;
+
     private void Awake()
     {
         DontDestroyOnLoad(this);
@@ -29,51 +31,31 @@ public class LevelManager : MonoBehaviour
     {
         _gameUI = GameObject.Find("GameUI").GetComponent<UISystem>();
         _menuUI = GameObject.Find("MenuUI").GetComponent<UISystem>();
+        _switcher =GameObject.Find("UISwitcher").GetComponent<UISwitcher>();
 
         LevelButton.OnLevelButtonClick += StartLevel;
-        StartManager.OnGameRestart += OnGameRestart;
-
-        _gameUI.gameObject.SetActive(false);
+        ExitButton.OnExitButtonClick += Exit;
     }
 
     private void OnDestroy()
     {
         LevelButton.OnLevelButtonClick -= StartLevel;
-        
-
+        ExitButton.OnExitButtonClick -= Exit;
     }
 
-    void Update()
+    private void StartLevel(string levelSceneName)
     {
-        if (IsInGame && Input.GetKeyDown(_quitKey))
-        {
-            SceneManager.UnloadSceneAsync((int)HW4.Scenes.Game);
-            SceneManager.UnloadSceneAsync(CurrentLevel);
-            _gameUI.gameObject.SetActive(false);
-
-            _menuUI.gameObject.SetActive(true);
-            _menuUI.Instance.OpenWindow(_backToMenuWindow);
-
-            IsInGame = false;
-            
-        }
+        SceneManager.LoadSceneAsync(levelSceneName, LoadSceneMode.Additive);
+        _currentLevel = levelSceneName;
+        SceneManager.LoadSceneAsync(_gameSceneName, LoadSceneMode.Additive);
+        _switcher.Switch();
     }
 
-    private void StartLevel(int levelNum)
+    private void Exit()
     {
-        SceneManager.LoadSceneAsync((int)HW4.Scenes.Game, LoadSceneMode.Additive);
-        SceneManager.LoadSceneAsync(levelNum, LoadSceneMode.Additive);
-        CurrentLevel = levelNum;
-        _gameUI.gameObject.SetActive(true);
-
-        _menuUI.gameObject.SetActive(false);
-
-        IsInGame = true;
-    }
-
-    private void OnGameRestart()
-    {
-        SceneManager.UnloadSceneAsync(CurrentLevel);
-        SceneManager.LoadSceneAsync(CurrentLevel, LoadSceneMode.Additive);
+        _menuUI.OpenWindow(_backToMenuWindowName);
+        SceneManager.UnloadSceneAsync(_gameSceneName);
+        SceneManager.UnloadSceneAsync(_currentLevel);
+        _switcher.Switch();
     }
 }

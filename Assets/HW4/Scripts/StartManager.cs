@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace HW4
+namespace Arkanoid
 {
     public class StartManager : MonoBehaviour
     {
@@ -12,40 +12,64 @@ namespace HW4
         public static event Action OnGameReset;
 
         [SerializeField]
-        private GameObject _ball;        
+        private GameObject _ball;
+        [SerializeField]
+        private string _startWindow;
         [SerializeField]
         private string _gameWindow;
         [SerializeField]
         private string _restartWindow;
 
-        private UISystem UI;
-
-        private bool isGameActive { get; set; }
+        private LivesManager _livesManager;
+        private UISystem _gameUI;
+        private bool _isGameActive;
 
         private void Awake()
         {
-            isGameActive = false;    
+            _isGameActive = false;
+
+            _livesManager = gameObject.GetComponent<LivesManager>();
         }
 
         private void Start()
         {
-            UI = GameObject.Find("GameUI").GetComponent<UISystem>();
+            _gameUI = GameObject.Find("GameUI").GetComponent<UISystem>();
+
+            ExitButton.OnExitButtonClick += Reset;
+        }
+
+        private void OnDestroy()
+        {
+            ExitButton.OnExitButtonClick -= Reset;
         }
 
         private void Update()
         {
-            if(!isGameActive && Input.GetKeyDown(KeyCode.Space))
+            if(!_isGameActive && Input.GetKeyDown(KeyCode.LeftShift))
             {
                 OnGameStart();
-                UI.Instance.OpenWindow(_gameWindow);
-                isGameActive = true;
+                _gameUI.Instance.OpenWindow(_gameWindow);
+                _isGameActive = true;
             }
-            if(isGameActive && _ball.transform.position.y < -16)
+            if(_isGameActive && _ball.transform.position.y < -16)
             {
-                OnGameRestart();
-                UI.Instance.OpenWindow(_restartWindow);
-                isGameActive = false;
+                _gameUI.Instance.OpenWindow(_restartWindow);
+                _isGameActive = false;
+                if (_livesManager.CurrentLives <= 1)
+                {
+                    OnGameRestart();
+                }
+                else
+                {
+                    OnGameReset();
+                }
             }
+        }
+
+        private void Reset()
+        {
+            OnGameRestart();
+            _gameUI.Instance.OpenWindow(_startWindow);
         }
     }
 }

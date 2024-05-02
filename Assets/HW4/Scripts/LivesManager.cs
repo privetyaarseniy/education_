@@ -1,38 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
+using System;
 using TMPro;
 using UnityEngine;
 
-namespace HW4
+namespace Arkanoid
 {
     public class LivesManager : MonoBehaviour
     {
+        public static event Action<int> OnLivesChange;
         public int CurrentLives { get => _currentLives; }
 
         [SerializeField]
         private int _startingLives;
 
         private int _currentLives;
-        private TextMeshProUGUI _text;
-
-        private void Awake()
-        {
-            _text = GetComponent<TextMeshProUGUI>();
-            _text.text = $"LIVES: {_startingLives}";
-
-            _currentLives = _startingLives;
-        }
 
         private void Start()
         {
+            EditLives(_startingLives);
+
             StartManager.OnGameReset += OnGameReset;
         }
 
         private void EditLives(int amountToAdd)
         {
             _currentLives += amountToAdd;
-            _text.text = $"LIVES: {_currentLives}";
+            OnLivesChange?.Invoke(CurrentLives);
         }
 
         private void OnGameReset()

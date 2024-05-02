@@ -5,11 +5,12 @@ using System.Linq;
 
 public class UISystem : MonoBehaviour
 {
+    public UISystem Instance { get; private set; }
+
     [SerializeField]
     private string _startWindow;
 
     private WindowBase[] Windows { get; set; }
-    public UISystem Instance { get; private set; }
 
     private void Awake()
     {
@@ -36,5 +37,17 @@ public class UISystem : MonoBehaviour
         }
 
         windowToOpen.gameObject.SetActive(true);
+    }
+
+    public void CloseWindow(string windowName)
+    {
+        var windowToClose = Windows.First(x => x.Name == windowName);
+
+        if(windowToClose == null)
+        {
+            return;
+        }
+
+        windowToClose.gameObject.SetActive(false);
     }
 }

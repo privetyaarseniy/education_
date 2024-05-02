@@ -1,26 +1,21 @@
-using HW4;
+using Arkanoid;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-namespace HW4
+namespace Arkanoid
 {
     public class ScoreManager : MonoBehaviour
     {
-        private TextMeshProUGUI scoreText;
+        public static event Action<int> OnScoreChange;
 
         private int scoreCount;
-
-        private void Awake()
-        {
-            scoreText = GetComponent<TextMeshProUGUI>();
-        }
 
         private void Start()
         {
             StartManager.OnGameRestart += OnGameRestart;
-
             Block.OnBlockDestroy += EditScore;
         }
 
@@ -32,7 +27,7 @@ namespace HW4
         private void EditScore(int scoreToAdd)
         {
             scoreCount += scoreToAdd;
-            scoreText.text = $"Score: {scoreCount}";
+            OnScoreChange(scoreCount);
         }
 
         private void OnGameRestart()

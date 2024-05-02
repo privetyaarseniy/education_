@@ -385,7 +385,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levelNum: 1
-  _level: 4
+  _level: 
+  _GameSceneName: Game
 --- !u!1 &6489380485924261172
 GameObject:
   m_ObjectHideFlags: 0

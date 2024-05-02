@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace HW4
+namespace Arkanoid
 {
     public class Block : MonoBehaviour
     {

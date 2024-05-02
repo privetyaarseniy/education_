@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace HW4
+namespace Arkanoid
 {
     public class Startup : MonoBehaviour
     {
+        [SerializeField]
+        private string UIScene;
+
         private void Awake()
         {
-            SceneManager.LoadScene((int)HW4.Scenes.UI, LoadSceneMode.Single);
-            SceneManager.UnloadSceneAsync((int)HW4.Scenes.Startup);
+            SceneManager.LoadScene(UIScene, LoadSceneMode.Single);
         }
     }
 }

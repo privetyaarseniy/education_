@@ -133,6 +133,9 @@ GameObject:
   m_Component:
   - component: {fileID: 20480746}
   - component: {fileID: 20480747}
+  - component: {fileID: 20480749}
+  - component: {fileID: 20480748}
+  - component: {fileID: 20480750}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -168,8 +171,48 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _ball: {fileID: 1234229726}
+  _startWindow: StartWindow
   _gameWindow: GameWindow
   _restartWindow: RestartWindow
+--- !u!114 &20480748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 20480744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e73fedd0b3a5e1246a8f1c5780149d04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _startingLives: 3
+--- !u!114 &20480749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 20480744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47914ea5a874a3a439ac91b44fa8105a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &20480750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 20480744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ec74ae9e1cb1b54b98ca45dc17b0d75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pauseWindowName: PausePopup
+  _backToMenuWindowName: SelectStageWindow
 --- !u!1 &236338199
 GameObject:
   m_ObjectHideFlags: 0
@@ -323,7 +366,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.8301887, g: 0.8301887, b: 0.8301887, a: 1}
   m_FlipX: 0
@@ -487,7 +530,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0.83137256, g: 0.83137256, b: 0.83137256, a: 1}
   m_FlipX: 0

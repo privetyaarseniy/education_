@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace HW4
+namespace Arkanoid
 {
     public class RestartWindow : WindowBase
     {

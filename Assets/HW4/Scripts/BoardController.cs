@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace HW4
+namespace Arkanoid
 {
     public class BoardController : MonoBehaviour
     {
@@ -23,18 +23,19 @@ namespace HW4
             _camera = Camera.main;
 
             StartManager.OnGameStart += OnGameLaunch;
-            StartManager.OnGameRestart += OnGameRestart;
+            StartManager.OnGameRestart += ResetPosition;
+            StartManager.OnGameReset += ResetPosition;
         }
 
         private void OnDestroy()
         {
             StartManager.OnGameStart -= OnGameLaunch;
-            StartManager.OnGameRestart -= OnGameRestart;
+            StartManager.OnGameRestart -= ResetPosition;
+            StartManager.OnGameReset -= ResetPosition;
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
-
             if (_isActive)
             {
                 var leftLimit = _camera.ScreenToWorldPoint(new Vector2(0, 0)).x + _spriteRenderer.size.x * transform.localScale.x / 2;
@@ -43,7 +44,6 @@ namespace HW4
                 x = Mathf.Clamp(x, leftLimit, rightLimit);
                 transform.position = new Vector2(x, transform.position.y);
             }
-
         }
 
         private void OnGameLaunch()
@@ -52,7 +52,7 @@ namespace HW4
             _isActive = true;
         }
 
-        private void OnGameRestart()
+        private void ResetPosition()
         {
             _isActive = false;
             transform.position = _startingPosition;

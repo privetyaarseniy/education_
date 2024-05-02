@@ -167,3 +167,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f09307af8a7486246b8506516d519000, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UIScene: UI

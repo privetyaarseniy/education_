@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace HW4
+namespace Arkanoid
 {
     public class BallController : MonoBehaviour
     {
@@ -26,13 +26,15 @@ namespace HW4
         private void Start()
         {
             StartManager.OnGameStart += OnGameStart;
-            StartManager.OnGameRestart += OnGameRestart;
+            StartManager.OnGameRestart += ResetPosition;
+            StartManager.OnGameReset += ResetPosition;
         }
 
         private void OnDestroy()
         {
             StartManager.OnGameStart -= OnGameStart;
-            StartManager.OnGameRestart -= OnGameRestart;
+            StartManager.OnGameRestart -= ResetPosition;
+            StartManager.OnGameReset -= ResetPosition;
         }
 
         private void FixedUpdate()
@@ -45,7 +47,7 @@ namespace HW4
             transform.position = _startingPosition;
             _rb.AddForce(new Vector2(Random.Range(-_xRangeStartForce, _xRangeStartForce + 1), _yStartForce), ForceMode2D.Impulse);
         }
-        private void OnGameRestart()
+        private void ResetPosition()
         {
             transform.position = _startingPosition;
             _rb.velocity = Vector2.zero;
