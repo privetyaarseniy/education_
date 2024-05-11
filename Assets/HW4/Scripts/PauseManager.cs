@@ -1,26 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
+using System;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Arkanoid
 {
     public class PauseManager : MonoBehaviour
     {
         [SerializeField]
-        private string _pauseWindowName;
+        private KeyCode _pauseButton;
         [SerializeField]
-        private string _backToMenuWindowName;
-
-        private UISystem _gameUI;
-        private UISwitcher _switcher;
+        private string _pauseWindowName;
 
         private void Start()
         {
-            _gameUI = GameObject.Find("GameUI").GetComponent<UISystem>();
-            _switcher = GameObject.Find("UISwitcher").GetComponent<UISwitcher>();
-
             ContinueButton.OnContinueButtonClick += Unpause;
             ExitButton.OnExitButtonClick += Unpause;
         }
@@ -33,17 +24,17 @@ namespace Arkanoid
 
         private void Update()
         {
-            if(Input.GetKeyDown(KeyCode.Escape))
+            if(Input.GetKeyDown(_pauseButton))
             {
+                UISystem.Instance.UIGame.OpenWindow(_pauseWindowName);
                 Time.timeScale = 0;
-                _gameUI.Instance.OpenWindow(_pauseWindowName);
             }
         }
 
         private void Unpause()
         {
-            _gameUI.CloseWindow(_pauseWindowName);
             Time.timeScale = 1;
+            UISystem.Instance.UIGame.CloseWindow(_pauseWindowName);
         }
     }
 }

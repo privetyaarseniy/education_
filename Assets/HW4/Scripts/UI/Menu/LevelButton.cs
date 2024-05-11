@@ -1,32 +1,32 @@
-using Arkanoid;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class LevelButton : MonoBehaviour
+namespace Arkanoid
 {
-    public static event Action<string> OnLevelButtonClick;
-
-    [SerializeField]
-    private int _levelNum;
-    [SerializeField]
-    private string _levelName;
-    
-
-    private void Awake()
+    [RequireComponent(typeof(Button))]
+    public class LevelButton : MonoBehaviour
     {
-        GetComponent<Button>().onClick.AddListener(Invoke);
-        GetComponentInChildren<TextMeshProUGUI>().text = $"{_levelNum}";
-    }
+        public static event Action<string> OnLevelButtonClick;
+        public string SceneName { get; private set; }
 
-    private void Invoke()
-    {
-        OnLevelButtonClick(_levelName);
+        private void Awake()
+        {
+            GetComponent<Button>().onClick.AddListener(InvokeEvent);
+        }
+
+        public void Setup(string sceneName, int levelIndex)
+        {
+            SceneName = sceneName;
+            GetComponentInChildren<TextMeshProUGUI>().text = levelIndex.ToString();
+        }
+
+        private void InvokeEvent()
+        {
+            OnLevelButtonClick?.Invoke(SceneName);
+        }
     }
 }

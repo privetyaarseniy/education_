@@ -22,16 +22,16 @@ namespace Arkanoid
         {
             _camera = Camera.main;
 
-            StartManager.OnGameStart += OnGameLaunch;
-            StartManager.OnGameRestart += ResetPosition;
-            StartManager.OnGameReset += ResetPosition;
+            StageManager.OnGameStart += OnGameLaunch;
+            StageManager.OnGameRestart += ResetPosition;
+            StageManager.OnGameReset += ResetPosition;
         }
 
         private void OnDestroy()
         {
-            StartManager.OnGameStart -= OnGameLaunch;
-            StartManager.OnGameRestart -= ResetPosition;
-            StartManager.OnGameReset -= ResetPosition;
+            StageManager.OnGameStart -= OnGameLaunch;
+            StageManager.OnGameRestart -= ResetPosition;
+            StageManager.OnGameReset -= ResetPosition;
         }
 
         private void FixedUpdate()

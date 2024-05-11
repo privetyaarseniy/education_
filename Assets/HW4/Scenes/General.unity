@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 1121932264}
   - component: {fileID: 1121932265}
   m_Layer: 0
-  m_Name: GeneralManager
+  m_Name: GeneralScripts
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -164,8 +164,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1121932263}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd6ff4333c5d84840a1cad548088062b, type: 3}
+  m_Script: {fileID: 11500000, guid: 53add41554949d84b876351ca2d1af22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _gameSceneName: Game
-  _backToMenuWindowName: SelectStageWindow

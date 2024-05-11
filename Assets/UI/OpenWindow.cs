@@ -4,21 +4,24 @@ using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class OpenWindow : MonoBehaviour
+namespace Arkanoid
 {
-    [SerializeField]
-    private string _windowName;
-    [SerializeField]
-    private UISystem UI;
-
-    private void Start()
+    public class OpenWindow : MonoBehaviour
     {
-        GetComponent<Button>().onClick.AddListener(Open);
-    }
+        [SerializeField]
+        private string _windowName;
 
-    private void Open()
-    {
-        UI.Instance.OpenWindow(_windowName);
-    }
+        private UIController UI;
 
+        private void Start()
+        {
+            GetComponent<Button>().onClick.AddListener(Open);
+            UI = GetComponentInParent<UIController>();
+        }
+
+        private void Open()
+        {
+            UI.OpenWindow(_windowName);
+        }
+    }
 }

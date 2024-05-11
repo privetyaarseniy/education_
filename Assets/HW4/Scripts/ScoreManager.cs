@@ -15,7 +15,7 @@ namespace Arkanoid
 
         private void Start()
         {
-            StartManager.OnGameRestart += OnGameRestart;
+            StageManager.OnGameRestart += OnGameRestart;
             Block.OnBlockDestroy += EditScore;
         }
 

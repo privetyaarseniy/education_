@@ -16,9 +16,9 @@ namespace Arkanoid
 
         private void Start()
         {
-            EditLives(_startingLives);
+            StageManager.OnGameReset += OnGameReset;
 
-            StartManager.OnGameReset += OnGameReset;
+            EditLives(_startingLives);
         }
 
         private void EditLives(int amountToAdd)
@@ -30,6 +30,11 @@ namespace Arkanoid
         private void OnGameReset()
         {
             EditLives(-1);
+        }
+
+        private void OnGameRestart()
+        {
+            EditLives(_startingLives - 1);
         }
     }
 }

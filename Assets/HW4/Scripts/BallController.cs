@@ -25,16 +25,16 @@ namespace Arkanoid
 
         private void Start()
         {
-            StartManager.OnGameStart += OnGameStart;
-            StartManager.OnGameRestart += ResetPosition;
-            StartManager.OnGameReset += ResetPosition;
+            StageManager.OnGameStart += OnGameStart;
+            StageManager.OnGameRestart += ResetPosition;
+            StageManager.OnGameReset += ResetPosition;
         }
 
         private void OnDestroy()
         {
-            StartManager.OnGameStart -= OnGameStart;
-            StartManager.OnGameRestart -= ResetPosition;
-            StartManager.OnGameReset -= ResetPosition;
+            StageManager.OnGameStart -= OnGameStart;
+            StageManager.OnGameRestart -= ResetPosition;
+            StageManager.OnGameReset -= ResetPosition;
         }
 
         private void FixedUpdate()

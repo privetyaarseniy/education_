@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Arkanoid
 {
-    public class StartManager : MonoBehaviour
+    public class StageManager : MonoBehaviour
     {
         public static event Action OnGameStart;
         public static event Action OnGameRestart;
@@ -21,7 +21,6 @@ namespace Arkanoid
         private string _restartWindow;
 
         private LivesManager _livesManager;
-        private UISystem _gameUI;
         private bool _isGameActive;
 
         private void Awake()
@@ -33,8 +32,6 @@ namespace Arkanoid
 
         private void Start()
         {
-            _gameUI = GameObject.Find("GameUI").GetComponent<UISystem>();
-
             ExitButton.OnExitButtonClick += Reset;
         }
 
@@ -48,20 +45,21 @@ namespace Arkanoid
             if(!_isGameActive && Input.GetKeyDown(KeyCode.LeftShift))
             {
                 OnGameStart();
-                _gameUI.Instance.OpenWindow(_gameWindow);
+                UISystem.Instance.UIGame.OpenWindow(_gameWindow);
                 _isGameActive = true;
             }
             if(_isGameActive && _ball.transform.position.y < -16)
             {
-                _gameUI.Instance.OpenWindow(_restartWindow);
                 _isGameActive = false;
                 if (_livesManager.CurrentLives <= 1)
                 {
                     OnGameRestart();
+                    UISystem.Instance.UIGame.OpenWindow(_restartWindow);
                 }
                 else
                 {
                     OnGameReset();
+                    UISystem.Instance.UIGame.OpenWindow(_startWindow);
                 }
             }
         }
@@ -69,7 +67,7 @@ namespace Arkanoid
         private void Reset()
         {
             OnGameRestart();
-            _gameUI.Instance.OpenWindow(_startWindow);
+            UISystem.Instance.UIGame.OpenWindow(_startWindow);
         }
     }
 }

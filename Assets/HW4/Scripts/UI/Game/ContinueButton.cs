@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace Arkanoid
 {
-    [RequireComponent(typeof(Button))]
+    [RequireComponent(typeof(ButtonVisuals))]
     public class ContinueButton : MonoBehaviour
     {
         public static event Action OnContinueButtonClick;

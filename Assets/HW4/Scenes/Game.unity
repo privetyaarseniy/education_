@@ -167,7 +167,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 20480744}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a33ad83f42cd7e46a81f58fdf1c5f84, type: 3}
+  m_Script: {fileID: 11500000, guid: 62f6b7d99c9419247ba50bce90a640ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _ball: {fileID: 1234229726}
@@ -211,8 +211,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ec74ae9e1cb1b54b98ca45dc17b0d75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _pauseButton: 27
   _pauseWindowName: PausePopup
-  _backToMenuWindowName: SelectStageWindow
 --- !u!1 &236338199
 GameObject:
   m_ObjectHideFlags: 0
