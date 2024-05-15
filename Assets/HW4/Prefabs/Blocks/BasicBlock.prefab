@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2664948775629853688}
   - component: {fileID: 1525054684638839182}
   m_Layer: 0
-  m_Name: Block
+  m_Name: BasicBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -98,9 +98,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a02cde875ea435499b21de7e5a96187, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _indestructible: 0
-  _scoreGiven: 1
-  _hitColors:
+  indestructible: 0
+  pickupBonusType: 0
+  scoreGiven: 1
+  hitColors:
   - {r: 1, g: 1, b: 1, a: 1}
 --- !u!61 &1525054684638839182
 BoxCollider2D:

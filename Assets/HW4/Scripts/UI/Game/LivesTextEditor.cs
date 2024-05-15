@@ -20,12 +20,12 @@ namespace Arkanoid
 
         private void OnEnable()
         {
-            LivesManager.OnLivesChange += OnLivesChange;
+            LivesSystem.OnLivesChange += OnLivesChange;
         }
 
         private void OnDestroy()
         {
-            LivesManager.OnLivesChange -= OnLivesChange;
+            LivesSystem.OnLivesChange -= OnLivesChange;
         }
 
         private void OnLivesChange(int value)

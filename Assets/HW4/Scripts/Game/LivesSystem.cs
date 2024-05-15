@@ -4,8 +4,9 @@ using UnityEngine;
 
 namespace Arkanoid
 {
-    public class LivesManager : MonoBehaviour
+    public class LivesSystem : MonoBehaviour
     {
+        public static LivesSystem Instance { get; private set; }
         public static event Action<int> OnLivesChange;
         public int CurrentLives { get => _currentLives; }
 
@@ -14,25 +15,23 @@ namespace Arkanoid
 
         private int _currentLives;
 
+        private void Awake()
+        {
+            Instance = this;
+        }
+
         private void Start()
         {
-            StageManager.OnGameReset += OnGameReset;
-
             EditLives(_startingLives);
         }
 
-        private void EditLives(int amountToAdd)
+        public void EditLives(int amountToAdd)
         {
             _currentLives += amountToAdd;
             OnLivesChange?.Invoke(CurrentLives);
         }
 
-        private void OnGameReset()
-        {
-            EditLives(-1);
-        }
-
-        private void OnGameRestart()
+        public void ResetLives()
         {
             EditLives(_startingLives - 1);
         }
